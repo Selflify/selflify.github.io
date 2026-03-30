@@ -470,6 +470,28 @@ img {
   margin-top: 2rem;
 }
 
+.integration-group + .integration-group {
+  margin-top: 4rem;
+}
+
+.integration-group-heading {
+  max-width: 44rem;
+}
+
+.integration-group-heading h3 {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+}
+
+.integration-group-heading p:not(.eyebrow) {
+  color: var(--muted);
+  line-height: 1.75;
+  margin: 1rem 0 0;
+}
+
 .code-example {
   border: 1px solid var(--line);
   border-radius: 1.4rem;

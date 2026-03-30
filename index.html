@@ -106,7 +106,7 @@
             <a class="ghost-link" href="#features">Features</a>
             <a class="ghost-link" href="#dns-stack">DNS stack</a>
             <a class="ghost-link" href="#workflow">Workflow</a>
-            <a class="ghost-link" href="#github-integration">GitHub integration</a>
+            <a class="ghost-link" href="#integrations">Integrations</a>
             <a
               class="ghost-link"
               href="https://github.com/Selflify/Selflify"
@@ -467,88 +467,100 @@ SELFLIFY_CLEANUP_INTERVAL_SECONDS=3600</code></pre>
           </div>
         </section>
 
-        <section class="section bootstrap-section" id="github-integration">
+        <section class="section bootstrap-section" id="integrations">
           <div class="section-heading compact">
-            <p class="eyebrow">GitHub Integration</p>
-            <h2>Wire your repository to Selflify preview deploys</h2>
+            <p class="eyebrow">Integrations</p>
+            <h2>Connect your deploy pipeline to Selflify</h2>
             <p>
-              Add one small site map file and one preview workflow to your repository. The
-              workflow prepares the deploy matrix, uploads preview builds to your Selflify server,
-              writes pull request comments and can feed the resolved preview URL into e2e tests.
+              Selflify supports two practical integration styles: GitHub-native preview workflows
+              with reusable actions, or plain CLI uploads from any CI system over SSH and
+              <code>rsync</code>.
             </p>
           </div>
 
-          <div class="bootstrap-notes">
-            <article class="note-card">
-              <h3>What your repository needs</h3>
-              <ul class="detail-list">
-                <li>Create <code>.github/preview-sites.json</code> in the application repository.</li>
-                <li>Add a preview workflow under <code>.github/workflows/preview.yml</code>.</li>
-                <li>
-                  Store <code>PREVIEW_BASE_DOMAIN</code>, <code>PREVIEW_SERVER_HOST</code> and
-                  <code>PREVIEW_SSH_PRIVATE_KEY</code> in GitHub Actions secrets.
-                </li>
-              </ul>
-            </article>
+          <div class="integration-group">
+            <div class="integration-group-heading">
+              <p class="eyebrow">GitHub</p>
+              <h3>Wire your repository to Selflify preview deploys</h3>
+              <p>
+                Add one small site map file and one preview workflow to your repository. The
+                workflow prepares the deploy matrix, uploads preview builds to your Selflify
+                server, writes pull request comments and can feed the resolved preview URL into
+                e2e tests.
+              </p>
+            </div>
 
-            <article class="note-card">
-              <h3>Public action repositories</h3>
-              <ul class="detail-list">
-                <li>
-                  <a href="https://github.com/Selflify/preview-prepare-action" target="_blank" rel="noreferrer"><code>Selflify/preview-prepare-action</code></a>
-                </li>
-                <li>
-                  <a href="https://github.com/Selflify/deploy-preview-action" target="_blank" rel="noreferrer"><code>Selflify/deploy-preview-action</code></a>
-                </li>
-                <li>
-                  <a href="https://github.com/Selflify/preview-comment-placeholder-action" target="_blank" rel="noreferrer"><code>Selflify/preview-comment-placeholder-action</code></a>
-                </li>
-                <li>
-                  <a href="https://github.com/Selflify/preview-comment-action" target="_blank" rel="noreferrer"><code>Selflify/preview-comment-action</code></a>
-                </li>
-                <li>
-                  <a href="https://github.com/Selflify/preview-url-action" target="_blank" rel="noreferrer"><code>Selflify/preview-url-action</code></a>
-                </li>
-              </ul>
-            </article>
+            <div class="bootstrap-notes">
+              <article class="note-card">
+                <h3>What your repository needs</h3>
+                <ul class="detail-list">
+                  <li>Create <code>.github/preview-sites.json</code> in the application repository.</li>
+                  <li>Add a preview workflow under <code>.github/workflows/preview.yml</code>.</li>
+                  <li>
+                    Store <code>PREVIEW_BASE_DOMAIN</code>, <code>PREVIEW_SERVER_HOST</code> and
+                    <code>PREVIEW_SSH_PRIVATE_KEY</code> in GitHub Actions secrets.
+                  </li>
+                </ul>
+              </article>
 
-            <article class="note-card">
-              <h3>How the flow behaves</h3>
-              <ul class="detail-list">
-                <li>Every configured site gets its own matrix job and upload step.</li>
-                <li>PRs receive a placeholder comment first and the final table after deploys finish.</li>
-                <li>
-                  Tests can ask <code>preview-url</code> for the final hostname and wait until the
-                  exact deployed commit becomes reachable.
-                </li>
-              </ul>
-            </article>
-          </div>
+              <article class="note-card">
+                <h3>Public action repositories</h3>
+                <ul class="detail-list">
+                  <li>
+                    <a href="https://github.com/Selflify/preview-prepare-action" target="_blank" rel="noreferrer"><code>Selflify/preview-prepare-action</code></a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Selflify/deploy-preview-action" target="_blank" rel="noreferrer"><code>Selflify/deploy-preview-action</code></a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Selflify/preview-comment-placeholder-action" target="_blank" rel="noreferrer"><code>Selflify/preview-comment-placeholder-action</code></a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Selflify/preview-comment-action" target="_blank" rel="noreferrer"><code>Selflify/preview-comment-action</code></a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Selflify/preview-url-action" target="_blank" rel="noreferrer"><code>Selflify/preview-url-action</code></a>
+                  </li>
+                </ul>
+              </article>
 
-          <div class="integration-code-stack">
-            <article class="timeline-step">
-              <div class="timeline-index">1</div>
-              <div>
-                <h3>Add the site map file</h3>
-                <p>
-                  Create <code>.github/preview-sites.json</code> so Selflify knows which sites to
-                  build from this repository, which commands to run for each one and where the
-                  final static output will be written.
-                </p>
-              </div>
-            </article>
+              <article class="note-card">
+                <h3>How the flow behaves</h3>
+                <ul class="detail-list">
+                  <li>Every configured site gets its own matrix job and upload step.</li>
+                  <li>PRs receive a placeholder comment first and the final table after deploys finish.</li>
+                  <li>
+                    Tests can ask <code>preview-url</code> for the final hostname and wait until the
+                    exact deployed commit becomes reachable.
+                  </li>
+                </ul>
+              </article>
+            </div>
 
-            <article class="code-example" data-expandable-code>
-              <button class="code-example-summary" type="button" aria-expanded="false">
-                <span class="code-example-label">File</span>
-                <code>.github/preview-sites.json</code>
-                <span class="code-example-hint">Click to expand</span>
-              </button>
-              <div class="code-block">
-                <button class="copy-button" type="button" data-copy-target="github-preview-sites">
-                  Copy
+            <div class="integration-code-stack">
+              <article class="timeline-step">
+                <div class="timeline-index">1</div>
+                <div>
+                  <h3>Add the site map file</h3>
+                  <p>
+                    Create <code>.github/preview-sites.json</code> so Selflify knows which sites to
+                    build from this repository, which commands to run for each one and where the
+                    final static output will be written.
+                  </p>
+                </div>
+              </article>
+
+              <article class="code-example" data-expandable-code>
+                <button class="code-example-summary" type="button" aria-expanded="false">
+                  <span class="code-example-label">File</span>
+                  <code>.github/preview-sites.json</code>
+                  <span class="code-example-hint">Click to expand</span>
                 </button>
-                <pre><code id="github-preview-sites">{
+                <div class="code-block">
+                  <button class="copy-button" type="button" data-copy-target="github-preview-sites">
+                    Copy
+                  </button>
+                  <pre><code id="github-preview-sites">{
   "include": [
     {
       "site": "marketing",
@@ -568,32 +580,32 @@ SELFLIFY_CLEANUP_INTERVAL_SECONDS=3600</code></pre>
     }
   ]
 }</code></pre>
-              </div>
-            </article>
+                </div>
+              </article>
 
-            <article class="timeline-step">
-              <div class="timeline-index">2</div>
-              <div>
-                <h3>Add the preview workflow</h3>
-                <p>
-                  Create <code>.github/workflows/preview.yml</code> to turn pull requests into
-                  preview deploy jobs. This workflow prepares the matrix, uploads the built files
-                  to your Selflify server and updates the pull request with the final links.
-                </p>
-              </div>
-            </article>
+              <article class="timeline-step">
+                <div class="timeline-index">2</div>
+                <div>
+                  <h3>Add the preview workflow</h3>
+                  <p>
+                    Create <code>.github/workflows/preview.yml</code> to turn pull requests into
+                    preview deploy jobs. This workflow prepares the matrix, uploads the built files
+                    to your Selflify server and updates the pull request with the final links.
+                  </p>
+                </div>
+              </article>
 
-            <article class="code-example" data-expandable-code>
-              <button class="code-example-summary" type="button" aria-expanded="false">
-                <span class="code-example-label">File</span>
-                <code>.github/workflows/preview.yml</code>
-                <span class="code-example-hint">Click to expand</span>
-              </button>
-              <div class="code-block">
-                <button class="copy-button" type="button" data-copy-target="github-preview-workflow">
-                  Copy
+              <article class="code-example" data-expandable-code>
+                <button class="code-example-summary" type="button" aria-expanded="false">
+                  <span class="code-example-label">File</span>
+                  <code>.github/workflows/preview.yml</code>
+                  <span class="code-example-hint">Click to expand</span>
                 </button>
-                <pre><code id="github-preview-workflow">name: Preview
+                <div class="code-block">
+                  <button class="copy-button" type="button" data-copy-target="github-preview-workflow">
+                    Copy
+                  </button>
+                  <pre><code id="github-preview-workflow">name: Preview
 
 on:
   pull_request:
@@ -680,32 +692,32 @@ jobs:
           path-name: ${{ needs.prepare.outputs.path_name }}
           preview-base-domain: ${{ secrets.PREVIEW_BASE_DOMAIN }}
           metadata-dir: preview-metadata</code></pre>
-              </div>
-            </article>
+                </div>
+              </article>
 
-            <article class="timeline-step">
-              <div class="timeline-index">3</div>
-              <div>
-                <h3>Feed the preview URL into e2e</h3>
-                <p>
-                  Use <code>Selflify/preview-url-action</code> when tests need the real preview
-                  hostname. The action resolves the final URL and can wait until the exact deployed
-                  commit is reachable before your test suite starts.
-                </p>
-              </div>
-            </article>
+              <article class="timeline-step">
+                <div class="timeline-index">3</div>
+                <div>
+                  <h3>Feed the preview URL into e2e</h3>
+                  <p>
+                    Use <code>Selflify/preview-url-action</code> when tests need the real preview
+                    hostname. The action resolves the final URL and can wait until the exact deployed
+                    commit is reachable before your test suite starts.
+                  </p>
+                </div>
+              </article>
 
-            <article class="code-example" data-expandable-code>
-              <button class="code-example-summary" type="button" aria-expanded="false">
-                <span class="code-example-label">Append to</span>
-                <code>.github/workflows/preview.yml</code>
-                <span class="code-example-hint">Click to expand</span>
-              </button>
-              <div class="code-block">
-                <button class="copy-button" type="button" data-copy-target="github-preview-e2e">
-                  Copy
+              <article class="code-example" data-expandable-code>
+                <button class="code-example-summary" type="button" aria-expanded="false">
+                  <span class="code-example-label">Append to</span>
+                  <code>.github/workflows/preview.yml</code>
+                  <span class="code-example-hint">Click to expand</span>
                 </button>
-                <pre><code id="github-preview-e2e">jobs:
+                <div class="code-block">
+                  <button class="copy-button" type="button" data-copy-target="github-preview-e2e">
+                    Copy
+                  </button>
+                  <pre><code id="github-preview-e2e">jobs:
   e2e:
     needs: deploy
     runs-on: ubuntu-latest
@@ -727,33 +739,74 @@ jobs:
         env:
           PLAYWRIGHT_BASE_URL: ${{ steps.preview.outputs.link }}
         run: yarn playwright test</code></pre>
-              </div>
-            </article>
+                </div>
+              </article>
+            </div>
+          </div>
 
-            <article class="timeline-step">
-              <div class="timeline-index">4</div>
-              <div>
-                <h3>Use plain CLI + rsync instead of actions</h3>
-                <p>
-                  If you do not want to depend on the public GitHub actions, you can upload
-                  preview builds from any CI runner with a plain shell step. The only requirement
-                  is to sync the built files into <code>/var/www/&lt;site&gt;/&lt;deploy&gt;</code>
-                  on the Selflify server.
-                </p>
-              </div>
-            </article>
+          <div class="integration-group">
+            <div class="integration-group-heading">
+              <p class="eyebrow">CLI</p>
+              <h3>Use plain rsync from any CI runner</h3>
+              <p>
+                If you do not want to depend on reusable GitHub actions, you can upload preview
+                builds from any CI system with plain shell steps. The only requirement is to sync
+                the build output into <code>/var/www/&lt;site&gt;/&lt;deploy&gt;</code> over SSH.
+              </p>
+            </div>
 
-            <article class="code-example" data-expandable-code>
-              <button class="code-example-summary" type="button" aria-expanded="false">
-                <span class="code-example-label">Shell snippet</span>
-                <code>rsync preview upload</code>
-                <span class="code-example-hint">Click to expand</span>
-              </button>
-              <div class="code-block">
-                <button class="copy-button" type="button" data-copy-target="github-preview-rsync">
-                  Copy
+            <div class="bootstrap-notes">
+              <article class="note-card">
+                <h3>What your runner needs</h3>
+                <ul class="detail-list">
+                  <li>SSH access to the Selflify server.</li>
+                  <li>A build output directory ready for upload.</li>
+                  <li>A predictable deploy name such as <code>pr-1234</code> or a commit SHA.</li>
+                </ul>
+              </article>
+
+              <article class="note-card">
+                <h3>What you provide</h3>
+                <ul class="detail-list">
+                  <li><code>PREVIEW_SSH_USER</code> and <code>PREVIEW_SERVER_HOST</code></li>
+                  <li><code>PREVIEW_SSH_PRIVATE_KEY</code></li>
+                  <li><code>PREVIEW_BASE_DOMAIN</code>, <code>SITE</code> and <code>DEPLOY_NAME</code></li>
+                </ul>
+              </article>
+
+              <article class="note-card">
+                <h3>How the flow behaves</h3>
+                <ul class="detail-list">
+                  <li>The runner uploads static files directly into the preview directory.</li>
+                  <li>No custom GitHub action repositories are required.</li>
+                  <li>The final URL is deterministic and can be printed into CI logs or comments.</li>
+                </ul>
+              </article>
+            </div>
+
+            <div class="integration-code-stack">
+              <article class="timeline-step">
+                <div class="timeline-index">1</div>
+                <div>
+                  <h3>Upload the build to the preview directory</h3>
+                  <p>
+                    Run a plain shell step after your build completes. It writes the generated
+                    files into the exact directory Selflify serves for that deploy name.
+                  </p>
+                </div>
+              </article>
+
+              <article class="code-example" data-expandable-code>
+                <button class="code-example-summary" type="button" aria-expanded="false">
+                  <span class="code-example-label">Shell snippet</span>
+                  <code>rsync preview upload</code>
+                  <span class="code-example-hint">Click to expand</span>
                 </button>
-                <pre><code id="github-preview-rsync">SITE=marketing
+                <div class="code-block">
+                  <button class="copy-button" type="button" data-copy-target="github-preview-rsync">
+                    Copy
+                  </button>
+                  <pre><code id="github-preview-rsync">SITE=marketing
 DEPLOY_NAME="pr-${PR_NUMBER}"
 OUTPUT_DIR="dist"
 TARGET_DIR="/var/www/${SITE}/${DEPLOY_NAME}"
@@ -768,8 +821,9 @@ rsync -az --delete \
   "${PREVIEW_SSH_USER}@${PREVIEW_SERVER_HOST}:${TARGET_DIR}/"
 
 echo "Preview URL: https://${DEPLOY_NAME}.${SITE}.${PREVIEW_BASE_DOMAIN}"</code></pre>
-              </div>
-            </article>
+                </div>
+              </article>
+            </div>
           </div>
         </section>
       </main>
