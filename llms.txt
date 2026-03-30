@@ -16,7 +16,7 @@ The project is MIT licensed and the source code lives at https://github.com/Self
 - Stable site URLs look like `app.example.dev`
 - Preview site URLs look like `pr-6825.app.example.dev`
 - Deploy directories live under `/var/www/<site>/<deploy>`
-- Runtime state lives in `selflify.config.json`
+- Runtime state lives in `runtime/selflify.config.json`
 - Caddy handles routing and zero-downtime reloads
 - Cloudflare is used for DNS automation, typically in DNS-only mode
 - Preview credentials are hashed through `caddy hash-password`
@@ -28,6 +28,7 @@ The project is MIT licensed and the source code lives at https://github.com/Self
 - Workflow: https://selflify.github.io/#workflow
 - DNS stack: https://selflify.github.io/#dns-stack
 - Environment: https://selflify.github.io/#environment
+- Integrations: https://selflify.github.io/#integrations
 
 ## Bootstrap model
 
@@ -41,6 +42,13 @@ Selflify ships with a one-line installer published from the main GitHub reposito
 
 After bootstrap, the first UI session is used to create the account, enter the main domain, server IP,
 Caddy contact email and provide the Cloudflare API token.
+
+## Integration model
+
+Selflify supports two practical integration styles:
+
+- GitHub-native preview deploy workflows with reusable `Selflify/*` actions
+- generic CLI-based uploads with plain SSH and `rsync`
 
 ## Runtime model
 
