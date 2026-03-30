@@ -275,9 +275,8 @@
             <p class="eyebrow">Bootstrap</p>
             <h2>Fresh server to running panel in one command</h2>
             <p>
-              The installer prepares the host OS, seeds the base runtime files and leaves you with
-              a running stack plus editable config in the project directory. By default, everything
-              is installed into <code>/opt/selflify</code>.
+              The installer prepares the host, seeds the runtime files and starts the stack. By
+              default, everything lands in <code>/opt/selflify</code>.
             </p>
           </div>
 
@@ -293,18 +292,15 @@
               <h3>Host bootstrap</h3>
               <p>
                 Docker, the Compose plugin, project files, <code>.env</code> and the initial
-                runtime config are placed on the server automatically from the GitHub release
-                assets. Unless you override the target directory, the bootstrap script installs
-                Selflify into <code>/opt/selflify</code>.
+                runtime config are placed on the server automatically from the release assets.
               </p>
             </article>
 
             <article class="note-card">
               <h3>First-time setup</h3>
               <p>
-                After bootstrap you open <code>http://&lt;server-ip&gt;/setup</code>, create the
-                account, enter the domain, server IP and Caddy email, then paste the Cloudflare
-                token.
+                Open <code>http://&lt;server-ip&gt;/setup</code> to create the account, enter the
+                domain, server IP and Caddy email, then paste the Cloudflare token.
               </p>
             </article>
 
@@ -456,9 +452,8 @@
             <p class="eyebrow">Environment</p>
             <h2>Configure Selflify through one <code>.env</code> file</h2>
             <p>
-              Put these variables into <code>.env</code> in the project root. In local development
-              that means the repository root. On a server that means the deployed project directory,
-              usually next to <code>docker-compose.yml</code>.
+              Put these variables into <code>.env</code> in the project root. On a server, that is
+              the deployed project directory next to <code>docker-compose.yml</code>.
             </p>
           </div>
 
@@ -491,9 +486,8 @@ SELFLIFY_CLEANUP_INTERVAL_SECONDS=3600</code></pre>
             <article class="note-card">
               <h3>Where to place it</h3>
               <p>
-                Create <code>.env</code> in the root of the project before running
-                <code>docker compose</code> or <code>yarn dev</code>. On a server installed through
-                the bootstrap script, that file lives in the deployed Selflify directory, which is
+                Create <code>.env</code> before running <code>docker compose</code> or
+                <code>yarn dev</code>. On a bootstrapped server, that means
                 <code>/opt/selflify</code> by default.
               </p>
             </article>
@@ -523,9 +517,8 @@ SELFLIFY_CLEANUP_INTERVAL_SECONDS=3600</code></pre>
             <p class="eyebrow">Integrations</p>
             <h2>Connect your deploy pipeline to Selflify</h2>
             <p>
-              Selflify supports two practical integration styles: GitHub-native preview workflows
-              with reusable actions, or plain CLI uploads from any CI system over SSH and
-              <code>rsync</code>.
+              Selflify supports two practical integration styles: GitHub workflows with reusable
+              actions, or plain CLI uploads over SSH and <code>rsync</code>.
             </p>
           </div>
 
@@ -534,10 +527,9 @@ SELFLIFY_CLEANUP_INTERVAL_SECONDS=3600</code></pre>
               <p class="eyebrow">GitHub</p>
               <h3>Wire your repository to Selflify preview deploys</h3>
               <p>
-                Add one small site map file and one preview workflow to your repository. The
-                workflow prepares the deploy matrix, uploads preview builds to your Selflify
-                server, writes pull request comments and can feed the resolved preview URL into
-                e2e tests.
+                Add one small site map file and one preview workflow. The action chain prepares the
+                deploy matrix, uploads preview builds, writes PR comments and can feed the resolved
+                preview URL into e2e tests.
               </p>
             </div>
 
@@ -581,8 +573,8 @@ SELFLIFY_CLEANUP_INTERVAL_SECONDS=3600</code></pre>
                   <li>Every configured site gets its own matrix job and upload step.</li>
                   <li>PRs receive a placeholder comment first and the final table after deploys finish.</li>
                   <li>
-                    Tests can ask <code>preview-url</code> for the final hostname and wait until the
-                    exact deployed commit becomes reachable.
+                    Tests can ask <code>preview-url</code> for the final hostname and wait for the
+                    deployed commit to become reachable.
                   </li>
                 </ul>
               </article>
@@ -800,9 +792,9 @@ jobs:
               <p class="eyebrow">CLI</p>
               <h3>Use plain rsync from any CI runner</h3>
               <p>
-                If you do not want to depend on reusable GitHub actions, you can upload preview
-                builds from any CI system with plain shell steps. The only requirement is to sync
-                the build output into <code>/var/www/&lt;site&gt;/&lt;deploy&gt;</code> over SSH.
+                If you do not want reusable actions, upload preview builds from any CI system with
+                plain shell steps. The only requirement is to sync the build output into
+                <code>/var/www/&lt;site&gt;/&lt;deploy&gt;</code> over SSH.
               </p>
             </div>
 
