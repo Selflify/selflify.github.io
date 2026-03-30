@@ -734,6 +734,47 @@ jobs:
         run: yarn playwright test</code></pre>
               </div>
             </details>
+
+            <article class="timeline-step">
+              <div class="timeline-index">4</div>
+              <div>
+                <h3>Use plain CLI + rsync instead of actions</h3>
+                <p>
+                  If you do not want to depend on the public GitHub actions, you can upload
+                  preview builds from any CI runner with a plain shell step. The only requirement
+                  is to sync the built files into <code>/var/www/&lt;site&gt;/&lt;deploy&gt;</code>
+                  on the Selflify server.
+                </p>
+              </div>
+            </article>
+
+            <details class="code-example">
+              <summary class="code-example-summary">
+                <span class="code-example-label">Shell snippet</span>
+                <code>rsync preview upload</code>
+                <span class="code-example-hint">Click to expand</span>
+              </summary>
+              <div class="code-block">
+                <button class="copy-button" type="button" data-copy-target="github-preview-rsync">
+                  Copy
+                </button>
+                <pre><code id="github-preview-rsync">SITE=marketing
+DEPLOY_NAME="pr-${PR_NUMBER}"
+OUTPUT_DIR="dist"
+TARGET_DIR="/var/www/${SITE}/${DEPLOY_NAME}"
+
+mkdir -p ~/.ssh
+printf '%s\n' "$PREVIEW_SSH_PRIVATE_KEY" > ~/.ssh/selflify-preview
+chmod 600 ~/.ssh/selflify-preview
+
+rsync -az --delete \
+  -e "ssh -i ~/.ssh/selflify-preview -o StrictHostKeyChecking=no" \
+  "${OUTPUT_DIR}/" \
+  "${PREVIEW_SSH_USER}@${PREVIEW_SERVER_HOST}:${TARGET_DIR}/"
+
+echo "Preview URL: https://${DEPLOY_NAME}.${SITE}.${PREVIEW_BASE_DOMAIN}"</code></pre>
+              </div>
+            </details>
           </div>
         </section>
       </main>
