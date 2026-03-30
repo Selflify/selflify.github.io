@@ -531,6 +531,18 @@ SELFLIFY_CLEANUP_INTERVAL_SECONDS=3600</code></pre>
           </div>
 
           <div class="integration-code-stack">
+            <article class="timeline-step">
+              <div class="timeline-index">1</div>
+              <div>
+                <h3>Add the site map file</h3>
+                <p>
+                  Create <code>.github/preview-sites.json</code> so Selflify knows which sites to
+                  build from this repository, which commands to run for each one and where the
+                  final static output will be written.
+                </p>
+              </div>
+            </article>
+
             <div class="code-block">
               <button class="copy-button" type="button" data-copy-target="github-preview-sites">
                 Copy
@@ -556,6 +568,18 @@ SELFLIFY_CLEANUP_INTERVAL_SECONDS=3600</code></pre>
   ]
 }</code></pre>
             </div>
+
+            <article class="timeline-step">
+              <div class="timeline-index">2</div>
+              <div>
+                <h3>Add the preview workflow</h3>
+                <p>
+                  Create <code>.github/workflows/preview.yml</code> to turn pull requests into
+                  preview deploy jobs. This workflow prepares the matrix, uploads the built files
+                  to your Selflify server and updates the pull request with the final links.
+                </p>
+              </div>
+            </article>
 
             <div class="code-block">
               <button class="copy-button" type="button" data-copy-target="github-preview-workflow">
@@ -651,6 +675,18 @@ jobs:
           preview-base-domain: ${{ secrets.PREVIEW_BASE_DOMAIN }}
           metadata-dir: preview-metadata</code></pre>
             </div>
+
+            <article class="timeline-step">
+              <div class="timeline-index">3</div>
+              <div>
+                <h3>Feed the preview URL into e2e</h3>
+                <p>
+                  Use <code>Selflify/preview-url-action</code> when tests need the real preview
+                  hostname. The action resolves the final URL and can wait until the exact deployed
+                  commit is reachable before your test suite starts.
+                </p>
+              </div>
+            </article>
 
             <div class="code-block">
               <button class="copy-button" type="button" data-copy-target="github-preview-e2e">
