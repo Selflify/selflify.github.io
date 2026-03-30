@@ -27,13 +27,19 @@ function setupCopyButtons() {
 }
 
 function setupExpandableCodeExamples() {
-  const buttons = document.querySelectorAll("[data-expandable-code] .code-example-summary");
+  const containers = document.querySelectorAll("[data-expandable-code]");
 
-  for (const button of buttons) {
-    button.addEventListener("click", () => {
-      const container = button.closest("[data-expandable-code]");
+  for (const container of containers) {
+    container.addEventListener("click", (event) => {
+      const target = event.target;
 
-      if (!container) {
+      if (!(target instanceof Element) || target.closest(".copy-button")) {
+        return;
+      }
+
+      const button = container.querySelector(".code-example-summary");
+
+      if (!(button instanceof HTMLButtonElement)) {
         return;
       }
 
