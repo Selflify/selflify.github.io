@@ -451,6 +451,44 @@ img {
   color: rgba(255, 241, 244, 0.92);
 }
 
+.code-block code {
+  display: block;
+  white-space: pre;
+}
+
+.code-block .token-key {
+  color: #ffb3ca;
+}
+
+.code-block .token-string {
+  color: #f2c688;
+}
+
+.code-block .token-variable {
+  color: #8dd9ff;
+}
+
+.code-block .token-keyword {
+  color: #c5a4ff;
+}
+
+.code-block .token-number,
+.code-block .token-constant {
+  color: #9fe19b;
+}
+
+.code-block .token-flag {
+  color: #ff86ad;
+}
+
+.code-block .token-comment {
+  color: rgba(255, 240, 244, 0.38);
+}
+
+.code-block .token-punctuation {
+  color: rgba(255, 240, 244, 0.62);
+}
+
 .copy-button {
   position: absolute;
   top: 1rem;
