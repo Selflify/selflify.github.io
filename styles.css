@@ -13,8 +13,8 @@
   --radius-md: 0.875rem;
   --shadow-panel: 0 30px 80px rgba(0, 0, 0, 0.34);
   --page-background:
-    radial-gradient(circle at top left, rgba(161, 33, 65, 0.26), transparent 24%),
-    radial-gradient(circle at 88% 12%, rgba(247, 120, 155, 0.12), transparent 18%),
+    radial-gradient(circle at top left, rgba(161, 33, 65, 0.18), transparent 18%),
+    radial-gradient(circle at 88% 12%, rgba(247, 120, 155, 0.08), transparent 14%),
     linear-gradient(180deg, #140d11 0%, #0b0910 42%, #070709 100%);
 }
 
@@ -29,6 +29,8 @@ html {
   min-height: 100%;
   background-color: #070709;
   background-image: var(--page-background);
+  background-repeat: no-repeat;
+  background-size: 100% 34rem;
 }
 
 body {
@@ -38,6 +40,8 @@ body {
   color: var(--text);
   background-color: #070709;
   background-image: var(--page-background);
+  background-repeat: no-repeat;
+  background-size: 100% 34rem;
 }
 
 a {
