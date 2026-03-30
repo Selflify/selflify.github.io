@@ -543,11 +543,17 @@ SELFLIFY_CLEANUP_INTERVAL_SECONDS=3600</code></pre>
               </div>
             </article>
 
-            <div class="code-block">
-              <button class="copy-button" type="button" data-copy-target="github-preview-sites">
-                Copy
-              </button>
-              <pre><code id="github-preview-sites">{
+            <details class="code-example">
+              <summary class="code-example-summary">
+                <span class="code-example-label">File</span>
+                <code>.github/preview-sites.json</code>
+                <span class="code-example-hint">Click to expand</span>
+              </summary>
+              <div class="code-block">
+                <button class="copy-button" type="button" data-copy-target="github-preview-sites">
+                  Copy
+                </button>
+                <pre><code id="github-preview-sites">{
   "include": [
     {
       "site": "marketing",
@@ -567,7 +573,8 @@ SELFLIFY_CLEANUP_INTERVAL_SECONDS=3600</code></pre>
     }
   ]
 }</code></pre>
-            </div>
+              </div>
+            </details>
 
             <article class="timeline-step">
               <div class="timeline-index">2</div>
@@ -581,17 +588,21 @@ SELFLIFY_CLEANUP_INTERVAL_SECONDS=3600</code></pre>
               </div>
             </article>
 
-            <div class="code-block">
-              <button class="copy-button" type="button" data-copy-target="github-preview-workflow">
-                Copy
-              </button>
-              <pre><code id="github-preview-workflow">name: Preview
+            <details class="code-example">
+              <summary class="code-example-summary">
+                <span class="code-example-label">File</span>
+                <code>.github/workflows/preview.yml</code>
+                <span class="code-example-hint">Click to expand</span>
+              </summary>
+              <div class="code-block">
+                <button class="copy-button" type="button" data-copy-target="github-preview-workflow">
+                  Copy
+                </button>
+                <pre><code id="github-preview-workflow">name: Preview
 
 on:
   pull_request:
   push:
-    branches:
-      - stable
 
 permissions:
   actions: read
@@ -674,7 +685,8 @@ jobs:
           path-name: ${{ needs.prepare.outputs.path_name }}
           preview-base-domain: ${{ secrets.PREVIEW_BASE_DOMAIN }}
           metadata-dir: preview-metadata</code></pre>
-            </div>
+              </div>
+            </details>
 
             <article class="timeline-step">
               <div class="timeline-index">3</div>
@@ -688,11 +700,17 @@ jobs:
               </div>
             </article>
 
-            <div class="code-block">
-              <button class="copy-button" type="button" data-copy-target="github-preview-e2e">
-                Copy
-              </button>
-              <pre><code id="github-preview-e2e">jobs:
+            <details class="code-example">
+              <summary class="code-example-summary">
+                <span class="code-example-label">Append to</span>
+                <code>.github/workflows/preview.yml</code>
+                <span class="code-example-hint">Click to expand</span>
+              </summary>
+              <div class="code-block">
+                <button class="copy-button" type="button" data-copy-target="github-preview-e2e">
+                  Copy
+                </button>
+                <pre><code id="github-preview-e2e">jobs:
   e2e:
     needs: deploy
     runs-on: ubuntu-latest
@@ -714,7 +732,8 @@ jobs:
         env:
           PLAYWRIGHT_BASE_URL: ${{ steps.preview.outputs.link }}
         run: yarn playwright test</code></pre>
-            </div>
+              </div>
+            </details>
           </div>
         </section>
       </main>
