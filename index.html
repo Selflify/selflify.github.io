@@ -543,12 +543,12 @@ SELFLIFY_CLEANUP_INTERVAL_SECONDS=3600</code></pre>
               </div>
             </article>
 
-            <details class="code-example">
-              <summary class="code-example-summary">
+            <article class="code-example" data-expandable-code>
+              <button class="code-example-summary" type="button" aria-expanded="false">
                 <span class="code-example-label">File</span>
                 <code>.github/preview-sites.json</code>
                 <span class="code-example-hint">Click to expand</span>
-              </summary>
+              </button>
               <div class="code-block">
                 <button class="copy-button" type="button" data-copy-target="github-preview-sites">
                   Copy
@@ -574,7 +574,7 @@ SELFLIFY_CLEANUP_INTERVAL_SECONDS=3600</code></pre>
   ]
 }</code></pre>
               </div>
-            </details>
+            </article>
 
             <article class="timeline-step">
               <div class="timeline-index">2</div>
@@ -588,12 +588,12 @@ SELFLIFY_CLEANUP_INTERVAL_SECONDS=3600</code></pre>
               </div>
             </article>
 
-            <details class="code-example">
-              <summary class="code-example-summary">
+            <article class="code-example" data-expandable-code>
+              <button class="code-example-summary" type="button" aria-expanded="false">
                 <span class="code-example-label">File</span>
                 <code>.github/workflows/preview.yml</code>
                 <span class="code-example-hint">Click to expand</span>
-              </summary>
+              </button>
               <div class="code-block">
                 <button class="copy-button" type="button" data-copy-target="github-preview-workflow">
                   Copy
@@ -686,7 +686,7 @@ jobs:
           preview-base-domain: ${{ secrets.PREVIEW_BASE_DOMAIN }}
           metadata-dir: preview-metadata</code></pre>
               </div>
-            </details>
+            </article>
 
             <article class="timeline-step">
               <div class="timeline-index">3</div>
@@ -700,12 +700,12 @@ jobs:
               </div>
             </article>
 
-            <details class="code-example">
-              <summary class="code-example-summary">
+            <article class="code-example" data-expandable-code>
+              <button class="code-example-summary" type="button" aria-expanded="false">
                 <span class="code-example-label">Append to</span>
                 <code>.github/workflows/preview.yml</code>
                 <span class="code-example-hint">Click to expand</span>
-              </summary>
+              </button>
               <div class="code-block">
                 <button class="copy-button" type="button" data-copy-target="github-preview-e2e">
                   Copy
@@ -733,7 +733,7 @@ jobs:
           PLAYWRIGHT_BASE_URL: ${{ steps.preview.outputs.link }}
         run: yarn playwright test</code></pre>
               </div>
-            </details>
+            </article>
 
             <article class="timeline-step">
               <div class="timeline-index">4</div>
@@ -748,12 +748,12 @@ jobs:
               </div>
             </article>
 
-            <details class="code-example">
-              <summary class="code-example-summary">
+            <article class="code-example" data-expandable-code>
+              <button class="code-example-summary" type="button" aria-expanded="false">
                 <span class="code-example-label">Shell snippet</span>
                 <code>rsync preview upload</code>
                 <span class="code-example-hint">Click to expand</span>
-              </summary>
+              </button>
               <div class="code-block">
                 <button class="copy-button" type="button" data-copy-target="github-preview-rsync">
                   Copy
@@ -774,7 +774,7 @@ rsync -az --delete \
 
 echo "Preview URL: https://${DEPLOY_NAME}.${SITE}.${PREVIEW_BASE_DOMAIN}"</code></pre>
               </div>
-            </details>
+            </article>
           </div>
         </section>
       </main>

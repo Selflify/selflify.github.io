@@ -26,6 +26,24 @@ function setupCopyButtons() {
   }
 }
 
+function setupExpandableCodeExamples() {
+  const buttons = document.querySelectorAll("[data-expandable-code] .code-example-summary");
+
+  for (const button of buttons) {
+    button.addEventListener("click", () => {
+      const container = button.closest("[data-expandable-code]");
+
+      if (!container) {
+        return;
+      }
+
+      const isOpen = container.classList.toggle("is-open");
+      button.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   setupCopyButtons();
+  setupExpandableCodeExamples();
 });

@@ -498,13 +498,14 @@ img {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  width: 100%;
+  border: 0;
+  background: transparent;
   padding: 1rem 1.2rem 0;
   cursor: pointer;
   list-style: none;
-}
-
-.code-example-summary::-webkit-details-marker {
-  display: none;
+  color: inherit;
+  text-align: left;
 }
 
 .code-example-label,
@@ -530,11 +531,11 @@ img {
   backdrop-filter: none;
 }
 
-.code-example:not([open]) .code-block {
+.code-example:not(.is-open) .code-block {
   max-height: 15rem;
 }
 
-.code-example:not([open]) .code-block::after {
+.code-example:not(.is-open) .code-block::after {
   content: "";
   position: absolute;
   inset: auto 0 0;
@@ -549,19 +550,19 @@ img {
   pointer-events: none;
 }
 
-.code-example[open] .code-example-hint::before {
+.code-example.is-open .code-example-hint::before {
   content: "Expanded";
 }
 
-.code-example[open] .code-example-hint {
+.code-example.is-open .code-example-hint {
   font-size: 0;
 }
 
-.code-example:not([open]) .code-example-hint::before {
+.code-example:not(.is-open) .code-example-hint::before {
   content: "Click to expand";
 }
 
-.code-example:not([open]) .code-example-hint {
+.code-example:not(.is-open) .code-example-hint {
   font-size: 0;
 }
 
