@@ -745,15 +745,15 @@ jobs:
                   <p>
                     Use <code>Selflify/preview-url-action</code> when tests need the real preview
                     hostname. The action resolves the final URL and can wait until the exact deployed
-                    commit is reachable before your test suite starts.
+                    commit is reachable before your test suite starts in a separate e2e workflow.
                   </p>
                 </div>
               </article>
 
               <article class="code-example" data-expandable-code>
                 <button class="code-example-summary" type="button" aria-expanded="false">
-                  <span class="code-example-label">Append to</span>
-                  <code>.github/workflows/preview.yml</code>
+                  <span class="code-example-label">File</span>
+                  <code>.github/workflows/e2e.yml</code>
                   <span class="code-example-hint">Click to expand</span>
                 </button>
                 <div class="code-block">
