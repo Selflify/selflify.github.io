@@ -256,6 +256,11 @@
             </article>
 
             <article class="feature-card">
+              <h3>Optional stable alias</h3>
+              <p>Add one extra hostname for the main branch while previews stay on the canonical subdomain and wildcard hosts.</p>
+            </article>
+
+            <article class="feature-card">
               <h3>Deploy inventory from disk</h3>
               <p>
                 Stable and preview folders under <code>/var/www</code> become a readable deploy
@@ -408,9 +413,9 @@
               <h3>What Caddy handles on the server</h3>
               <p>
                 Each site gets a stable hostname like <code>app.example.dev</code> plus a wildcard
-                preview hostname like <code>*.app.example.dev</code>. Selflify writes one generated
-                Caddy config, and Caddy resolves the right directory without extra per-site nginx
-                vhost files.
+                preview hostname like <code>*.app.example.dev</code>. You can also attach one extra exact alias to
+                the main branch only. Selflify writes one generated Caddy config, and Caddy resolves the
+                right directory without extra per-site nginx vhost files.
               </p>
             </article>
           </div>
@@ -422,6 +427,7 @@
                 <li>Delegate the zone you want Selflify to manage to Cloudflare nameservers.</li>
                 <li>Keep the Selflify A records as <strong>DNS only</strong>, not proxied.</li>
                 <li>Let Selflify point those records at your server IP automatically.</li>
+                <li>If you attach a separate stable alias, keep its DNS under your own control.</li>
               </ul>
             </article>
 
