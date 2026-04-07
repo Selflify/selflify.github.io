@@ -1,12 +1,12 @@
 # Selflify
 
-> Free and open source self-hosted preview deploy control panel for static SPA sites.
+> Free and open source self-hosted alternative to Netlify, Vercel and similar platforms for static SPA sites.
 
 Canonical URL: https://selflify.github.io/
 
 ## Summary
 
-Selflify is a self-hosted control panel for teams that run static SPA previews on their own server.
+Selflify is a self-hosted control panel for teams that want a Netlify- or Vercel-like preview workflow on their own server.
 It manages file-backed stable and preview deploys, generated Caddy routing, Cloudflare DNS records,
 preview authentication, runtime backups and cleanup flows without introducing a separate deploy database.
 The project is MIT licensed and the source code lives at https://github.com/Selflify/Selflify
@@ -64,7 +64,7 @@ Selflify is intentionally literal:
 Useful search intents this page answers well:
 
 - self-hosted preview deploys
-- netlify alternative for static spa previews
+- netlify and vercel alternative for static spa previews
 - caddy cloudflare preview routing
 - filesystem-backed deploy preview control panel
 - self-hosted caddy preview auth dashboard
